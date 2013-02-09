@@ -3,7 +3,7 @@ __author__ = 'Andrew Hawker <andrew.r.hawker@gmail.com'
 from flask import Blueprint, jsonify
 from jpi.spreads.constants import MOCK_SPREADS
 
-spreads = Blueprint('spreads', __name__, url_prefix='/api/spreads')
+spreads = Blueprint('spreads', __name__, url_prefix='/spreads')
 
 @spreads.route('/')
 def get_spreads():

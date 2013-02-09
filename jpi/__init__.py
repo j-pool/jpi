@@ -3,7 +3,7 @@ __author__ = 'Andrew Hawker <andrew.r.hawker@gmail.com>'
 from flask import Flask, jsonify
 from werkzeug.exceptions import default_exceptions
 
-def json_app(app):
+def jpi_app(app):
 	def jsonify_unhandled_exceptions(e):
 		response = jsonify(message=str(e))
 		response.status_code = getattr(e, 'code', 500)
@@ -13,10 +13,12 @@ def json_app(app):
 		app.error_handler_spec[None][status_code] = jsonify_unhandled_exceptions
 	return app
 
-app = json_app(Flask(__name__))
+app = jpi_app(Flask(__name__))
 
+from jpi.schedule.schedule import schedule
 from jpi.scores.scores import scores
 from jpi.spreads.spreads import spreads
 
+app.register_blueprint(schedule)
 app.register_blueprint(scores)
 app.register_blueprint(spreads)
