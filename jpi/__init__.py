@@ -15,10 +15,6 @@ def jpi_app(app):
 
 app = jpi_app(Flask(__name__))
 
-from jpi.schedule.schedule import schedule
-from jpi.scores.scores import scores
-from jpi.spreads.spreads import spreads
+from jpi.games.games import games
 
-app.register_blueprint(schedule)
-app.register_blueprint(scores)
-app.register_blueprint(spreads)
+app.register_blueprint(games)
